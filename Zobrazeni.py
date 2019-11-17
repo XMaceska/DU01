@@ -8,19 +8,24 @@ R = 6371.11
 
 a = input("Na výběr z několika zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení:")
 
-def Lambert(R):
-    print("lol")
-def Marin(R):
-    print("rofl")
-def Braun(R):
+b = int(input("Zvolte požadované měřítko:",))
+
+def lambert(R):
+    for v in range (-180,180):
+        x = 10
+
+
+def marin(R):
+    return "rofl"
+def braun(R):
     print("ok")
-def Mercator(R):
+def mercator(R):
     print("not ok")
 
-while a == "L":
-    print("Lambertovo zobrazení:")
-    Lambert
-
+if a == "L":
+    print("Lambertovo zobrazení:", lambert(R))
+elif a == "A":
+    print(marin(R))
 
 
 
