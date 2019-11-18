@@ -12,6 +12,8 @@ a = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro La
 b = int(input("Zvolte požadované měřítko: ",))
 
 polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
+
+# tohle celkem blbost vlastně
 while polomer == "A":
     R = int(input("Zvolte požadovaný poloměr země v [km], [m] anebo [cm]: ",))
     if len(str((R))) == 4:
@@ -26,7 +28,7 @@ while polomer == "A":
         print("zadal(a) jste poloměr země", R, "cm")
         R = R
         break
-    if print("zadal jste hodnotu mimo požadované rozmezí"):
+    elif print("zadal jste hodnotu mimo požadované rozmezí"):
         break
 if polomer == "N":
     R = R*100000
