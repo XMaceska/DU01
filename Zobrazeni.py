@@ -13,22 +13,22 @@ b = int(input("Zvolte požadované měřítko: ",))
 
 polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
-# tohle celkem blbost vlastně
+# tohle celkem blbost vlastně, musím napsat, v jakých chcete zadat jednotkách? elif print: odkaz na převod jednotek
 while polomer == "A":
-    R = int(input("Zvolte požadovaný poloměr země v [km], [m] anebo [cm]: ",))
-    if len(str((R))) == 4:
-        print("zadal(a) jste poloměr země",R, "km")
+    R = (input("V jakých jednotkách chcete zadat poloměr? [km], [m] anebo [cm]? : ",))
+    if R == "KM" or "km" or "kilometry" or "kilometr" or "[km]":
+        int(input("zadejte požadovaný poloměr v km",))
         R = R*100000
         break
-    if len(str((R))) == 7:
-        print("zadal(a) jste poloměr země",R, "m")
+    if R == "m" or "M" or "metry" or"metr" or "[km]":
+        int(input("zadejte požadovaný poloměr v m"))
         R = R*100
         break
-    if len(str((R))) == 9:
-        print("zadal(a) jste poloměr země", R, "cm")
+    if R == "cm" or "CM" or "centimetry" or "centimetr" or "[km]":
+        int(input("zadejte požadovaný poloměr v cm"))
         R = R
         break
-    elif print("zadal jste hodnotu mimo požadované rozmezí"):
+    elif print("potřebujete odkaz na převod jentoek? https://www.jednotky.cz/"):
         break
 if polomer == "N":
     R = R*100000
@@ -38,7 +38,7 @@ if polomer == "N":
 
 def lambert(R):
     for v in range(-180, 180, c):      # funkce range (start, stop, step)
-        x = R*(radians(v))
+        x = R*(degrees(v))
         x_vypocet_meritka = round(x/b,1)
         poledniky.append(x_vypocet_meritka)
 
