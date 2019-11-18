@@ -1,4 +1,4 @@
-from math import sin, tan, log, radians
+from math import sin, tan, log, radians, degrees
 
 # definice proměnných
 
@@ -13,29 +13,30 @@ b = int(input("Zvolte požadované měřítko: ",))
 
 polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 while polomer == "A":
-    R = int(input("Zvolte požadovaný poloměr země v celých číslech prosím: ",))
-    while len(str((R))) == 4:
-        print("zadal(a) jste poloměr země",R, "v jednotkách km")
+    R = int(input("Zvolte požadovaný poloměr země v [km], [m] anebo [cm]: ",))
+    if len(str((R))) == 4:
+        print("zadal(a) jste poloměr země",R, "km")
         R = R*100000
+        break
     if len(str((R))) == 7:
-        print("zadal(a) jste poloměr země",R, "v jednotkách m")
+        print("zadal(a) jste poloměr země",R, "m")
         R = R*100
+        break
     if len(str((R))) == 9:
-        print("zadal(a) jste poloměr země", R, "v jednotkách cm")
+        print("zadal(a) jste poloměr země", R, "cm")
         R = R
+        break
+    if print("zadal jste hodnotu mimo požadované rozmezí"):
         break
 if polomer == "N":
     R = R*100000
-
-
-
 
 # tvorba funkcí ze vzorců pro zobrazení
 # v = poledniky, u = rovnobezky
 
 def lambert(R):
     for v in range(-180, 180, c):      # funkce range (start, stop, step)
-        x = R*v
+        x = R*(radians(v))
         x_vypocet_meritka = round(x/b,1)
         poledniky.append(x_vypocet_meritka)
 
