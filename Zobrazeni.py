@@ -9,11 +9,20 @@ rovnobezky = []
 poledniky = []
 
 a = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení:")
-b = int(input("Zvolte požadované měřítko: ",))
+while a != "L" and a != "A" and a != "B" and a != "M":
+    print("pro znak",a,"není definováno žádné zobrazení\n")
+    druhy_pokus = input("Na výběr pouze z uvedených válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení:")
+    while druhy_pokus == "L" and druhy_pokus == "A" and druhy_pokus == "B" and druhy_pokus == "M":
+        break
+    if druhy_pokus != "L" and druhy_pokus != "A" and druhy_pokus != "B" and druhy_pokus != "M":
+        print("pro znak",druhy_pokus,"také není definováno žádné zobrazení")
+        continue
+    break
+    
+b = int(input("Zvolte požadované měřítko: "))
 
 polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
-# tohle celkem blbost vlastně, musím napsat, v jakých chcete zadat jednotkách? elif print: odkaz na převod jednotek
 
 while polomer == "A":
     jednotky = (input("V jakých jednotkách chcete zadat poloměr země? [km], [m] anebo [cm], [?] pro pomoc s převody: "))
@@ -37,6 +46,13 @@ while polomer == "A":
         continue
 if polomer == "N":
     R = R*100000
+if polomer != "A" and polomer != "N":
+    print("Zadal jste neplatnou odpověd. Zadejte prosím pouze A pro ANO a N pro NE.")
+    polomer_druhy_pokus = input("Chcete zvolit vlastní poloměr země? A/N: ")
+    while polomer_druhy_pokus == "A" and polomer_druhy_pokus == "N":
+        break
+    if polomer_druhy_pokus != "A" and polomer_druhy_pokus != "N":
+        print("Zadal jste neplatnou odpověd. Zadejte prosím pouze A pro ANO a N pro NE.")
 
 # tvorba funkcí ze vzorců pro zobrazení
 # v = poledniky, u = rovnobezky
@@ -76,25 +92,20 @@ def mercator(R):
         y = R*log(1/tan(radians(u)/2))
         rovnobezky.append(y)
 
-if a == "L":
+
+while a == "L":
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-
-elif a == "A":
+    exit()
+if a == "A":
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\n", "Poledníky:", poledniky)
-
-elif a == "B":
+    exit()
+if a == "B":
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\n", "Poledníky:", poledniky)
-
-elif a == "M":
+    exit()
+if a == "M":
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\n", "Poledníky:", poledniky)
-
-else:
-    print("pro písmeno",a, "není definované žádné zobrazení")
     exit()
-
-
-
