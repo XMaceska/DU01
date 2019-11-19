@@ -121,17 +121,7 @@ def mercator(R):
 while a == "L":
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    forward(rovnobezky
-
-
-
-
-
-
-
-
-
-
+    forward(rovnobezky)
     exitonclick()
     input("Konec")
 if a == "A":
