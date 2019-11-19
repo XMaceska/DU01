@@ -22,35 +22,34 @@ while a != "L" and a != "A" and a != "B" and a != "M":
     
 b = int(input("Zvolte požadované měřítko: "))
 
-polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
+# polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
 
-while polomer == "A":
-    jednotky = (input("V jakých jednotkách chcete zadat poloměr země? [km], [m] anebo [cm], [?] pro pomoc s převody: "))
-    if jednotky == "km":
-        R = float(input("Zadejte požadovaný poloměr země v km: "))
+while True:
+    polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
+    if polomer == "A":
+        jednotky = (input("V jakých jednotkách chcete zadat poloměr země? [km], [m] anebo [cm], [?] pro pomoc s převody: "))
+        if jednotky == "km":
+            R = float(input("Zadejte požadovaný poloměr země v km: "))
+            R = R*100000
+            break
+        if jednotky == "m":
+            R = float(input("Zadejte požadovaný poloměr země v m: "))
+            R = R*100
+            break
+        if jednotky == "cm":
+            R = float(input("Zadejte požadovaný poloměr země v cm: "))
+            R = R
+            break
+        if jednotky == "?":
+            print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
+            continue
+        else:
+            print("Zadejte prosím pouze znak(y) v hranatých závorkách")
+            continue
+    if polomer == "N":
         R = R*100000
         break
-    elif jednotky == "m":
-        R = float(input("Zadejte požadovaný poloměr země v m: "))
-        R = R*100
-    elif jednotky == "cm":
-        R = float(input("Zadejte požadovaný poloměr země v cm: "))
-        R = R
-    elif jednotky == "?":
-        print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
-        continue
-    else:
-        print("Zadejte prosím pouze znak(y) v hranatých závorkách")
-        continue
-    break
-if polomer == "N":
-    R = R*100000
-
-
-
-
-
 
 
 # tvorba funkcí ze vzorců pro zobrazení
