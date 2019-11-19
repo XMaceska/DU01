@@ -14,22 +14,27 @@ b = int(input("Zvolte požadované měřítko: ",))
 polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
 # tohle celkem blbost vlastně, musím napsat, v jakých chcete zadat jednotkách? elif print: odkaz na převod jednotek
+
 while polomer == "A":
-    R = (input("V jakých jednotkách chcete zadat poloměr? [km], [m] anebo [cm]? : ",))
-    if R == "KM" or "km" or "kilometry" or "kilometr" or "[km]":
-        int(input("zadejte požadovaný poloměr v km",))
+    jednotky = (input("V jakých jednotkách chcete zadat poloměr země? [km], [m] anebo [cm], [?] pro pomoc s převody: "))
+    if jednotky == "km":
+        R = float(input("Zadejte požadovaný poloměr země v km: "))
         R = R*100000
         break
-    if R == "m" or "M" or "metry" or"metr" or "[km]":
-        int(input("zadejte požadovaný poloměr v m"))
+    if jednotky == "m":
+        R = float(input("Zadejte požadovaný poloměr země v m: "))
         R = R*100
         break
-    if R == "cm" or "CM" or "centimetry" or "centimetr" or "[km]":
-        int(input("zadejte požadovaný poloměr v cm"))
+    if jednotky == "cm":
+        R = float(input("Zadejte požadovaný poloměr země v cm: "))
         R = R
         break
-    elif print("potřebujete odkaz na převod jentoek? https://www.jednotky.cz/"):
-        break
+    if jednotky == "?":
+        print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
+        continue
+    else:
+        print("Zadejte prosím pouze znak(y) v hranatých závorkách")
+        continue
 if polomer == "N":
     R = R*100000
 
@@ -38,7 +43,7 @@ if polomer == "N":
 
 def lambert(R):
     for v in range(-180, 180, c):      # funkce range (start, stop, step)
-        x = R*(degrees(v))
+        x = float(R*(radians(v)))
         x_vypocet_meritka = round(x/b,1)
         poledniky.append(x_vypocet_meritka)
 
