@@ -16,6 +16,7 @@ while a != "L" and a != "A" and a != "B" and a != "M":
         break
     if druhy_pokus != "L" and druhy_pokus != "A" and druhy_pokus != "B" and druhy_pokus != "M":
         print("pro znak",druhy_pokus,"také není definováno žádné zobrazení")
+        druhy_pokus = a
         continue
     break
     
@@ -30,29 +31,27 @@ while polomer == "A":
         R = float(input("Zadejte požadovaný poloměr země v km: "))
         R = R*100000
         break
-    if jednotky == "m":
+    elif jednotky == "m":
         R = float(input("Zadejte požadovaný poloměr země v m: "))
         R = R*100
-        break
-    if jednotky == "cm":
+    elif jednotky == "cm":
         R = float(input("Zadejte požadovaný poloměr země v cm: "))
         R = R
-        break
-    if jednotky == "?":
+    elif jednotky == "?":
         print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
         continue
     else:
         print("Zadejte prosím pouze znak(y) v hranatých závorkách")
         continue
+    break
 if polomer == "N":
     R = R*100000
-if polomer != "A" and polomer != "N":
-    print("Zadal jste neplatnou odpověd. Zadejte prosím pouze A pro ANO a N pro NE.")
-    polomer_druhy_pokus = input("Chcete zvolit vlastní poloměr země? A/N: ")
-    while polomer_druhy_pokus == "A" and polomer_druhy_pokus == "N":
-        break
-    if polomer_druhy_pokus != "A" and polomer_druhy_pokus != "N":
-        print("Zadal jste neplatnou odpověd. Zadejte prosím pouze A pro ANO a N pro NE.")
+
+
+
+
+
+
 
 # tvorba funkcí ze vzorců pro zobrazení
 # v = poledniky, u = rovnobezky
