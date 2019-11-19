@@ -21,6 +21,7 @@ while a != "L" and a != "A" and a != "B" and a != "M":
     break
     
 b = int(input("Zvolte požadované měřítko: "))
+print("zvolil(a) jste měřítko 1:",b)
 
 # polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
@@ -50,6 +51,8 @@ while True:
     if polomer == "N":
         R = R*100000
         break
+    else:
+        print("Zadal jste nesprávný vstup. Zadejte prosím pouze A pro ANO a N pro NE ")
 
 
 # tvorba funkcí ze vzorců pro zobrazení
@@ -68,27 +71,33 @@ def lambert(R):
 
 def marin(R):
     for v in range(-180, 180, c):
-        x = R*v
-        poledniky.append(x)
+        x = float(R*(radians(v)))
+        x_vypocet_meritka = round(x/b,1)
+        poledniky.append(x_vypocet_meritka)
     for u in range(-90, 90, c):
-        y = R*u
-        rovnobezky.append(y)
+        y = R*(radians(u))
+        y_vypocet_meritka = round(y/b,1)
+        rovnobezky.append(y_vypocet_meritka)
 
 def braun(R):
     for v in range(-180, 180, c):
-        x = R*v
-        poledniky.append(x)
+        x = R*(radians(v))
+        x_vypocet_meritka = round(x/b,1)
+        poledniky.append(x_vypocet_meritka)
     for u in range(-90, 90, c):
         y = 2*R*tan(radians(u)/2)
-        rovnobezky.append(y)
+        y_vypocet_meritka = round(y/b,1)
+        rovnobezky.append(y_vypocet_meritka)
 
 def mercator(R):
     for v in range(-180, 180, c):
-        x = R*v
-        poledniky.append(x)
+        x = R*(radians(v))
+        x_vypocet_meritka = round(x/b,1)
+        poledniky.append(x_vypocet_meritka)
     for u in range(-90, 91, c):
         y = R*log(1/tan(radians(u)/2))
-        rovnobezky.append(y)
+        y_vypocet_meritka = round (y/b,1)
+        rovnobezky.append(y_vypocet_meritka)
 
 
 while a == "L":
