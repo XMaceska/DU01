@@ -10,7 +10,8 @@ Program pro výpočet vzdáleností mezi body po aplikaci zobrazení
 2) Volba meřítka
 
  - ve formátu 1:"váš vstup"
- - pouze celočíselný formát 
+ - pouze celočíselný formát
+ - s defaultním poloměrem země nejlépe funguje 1:50000000
 
 3) Volba Vlastního poloměru země
  
