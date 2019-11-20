@@ -1,5 +1,4 @@
-from math import sin, tan, log, radians, degrees
-from turtle import forward, exitonclick
+from math import sin, tan, log, radians,pi
 
 # definice proměnných
 
@@ -9,23 +8,37 @@ c = 10              # vzdálenost mezi souřadnicemi [°]
 rovnobezky = []
 poledniky = []
 
-a = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
-while a != "L" and a != "A" and a != "B" and a != "M":
-    print("pro znak",a,"není definováno žádné zobrazení\n")
+
+#  z = Výběr zobrazení, neplatný vstup ošetřen pomocí vnořené funkce While
+
+z = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
+while z != "L" and z != "A" and z != "B" and z != "M":
+    print("pro znak",z, "není definováno žádné zobrazení\n")
     druhy_pokus = input("Na výběr pouze z uvedených válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
     while druhy_pokus == "L" and druhy_pokus == "A" and druhy_pokus == "B" and druhy_pokus == "M":
         break
     if druhy_pokus != "L" and druhy_pokus != "A" and druhy_pokus != "B" and druhy_pokus != "M":
         print("pro znak",druhy_pokus,"také není definováno žádné zobrazení")
-        druhy_pokus = a
+        druhy_pokus = z
         continue
     break
-    
-b = int(input("Zvolte požadované měřítko: "))
-print(f'Zvolil(a) jste měřítko 1:{b}')
 
-# polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
 
+# m = výběr měřítka, Požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
+
+while True:
+    m = (input("Zvolte požadované měřítko: "))
+    if m.isdigit():
+        m = int(m)
+        print(f'Zvolil(a) jste měřítko 1:{m}') # kudrnaté závorky z důvodu, aby nebyla mezera za dvojtečkou.
+        break
+    else:
+        print({m},"není číslo (integer), zadejte prosím pouze celočíslenou hodnotu:")
+
+
+# Volba vlastního poloměru země.
+# Pomocí vnořených příkazů IF umožněna volba jednotek při vstupu.
+# Výsledný poloměr vždy převeden na jednotky cm.
 
 while True:
     polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
@@ -56,20 +69,25 @@ while True:
         print("Zadal jste nesprávný vstup. Zadejte prosím pouze A pro ANO a N pro NE ")
 
 
-# tvorba funkcí ze vzorců pro zobrazení
+# definice jednolivých funkcí za pomocí dostupných vzorců
 # v = poledniky, u = rovnobezky
+# Ve Vzorcích se dosazují radiány - nutný převod ze stupnů na radiány.
+# V závěru každé funkce výstup přepočten pomocí zadaného měřítka, následně každá hodnota vložena do vytvořeného seznamu
+# Funkcí IF ošetřeno je-li hodnota vzdáleností > 100 cm vypíše "-"
+
+
 
 def lambert(R):
     for v in range(-180, 180, c):      # funkce range (start, stop, step)
         x = float(R*(radians(v)))
-        x_vypocet_meritka = round(x/b,1)
+        x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
 
     for u in range(-90, 90, c):
         y = R*sin(radians(u))
-        y_vypocet_meritka = round(y/b,1)
+        y_vypocet_meritka = round(y / m, 1)
         if abs(y_vypocet_meritka) > 100:
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
@@ -77,14 +95,14 @@ def lambert(R):
 def marin(R):
     for v in range(-180, 180, c):
         x = float(R*(radians(v)))
-        x_vypocet_meritka = round(x/b,1)
+        x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
 
     for u in range(-90, 90, c):
         y = R*(radians(u))
-        y_vypocet_meritka = round(y/b,1)
+        y_vypocet_meritka = round(y / m, 1)
         if abs(y_vypocet_meritka) > 100:
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
@@ -92,13 +110,13 @@ def marin(R):
 def braun(R):
     for v in range(-180, 180, c):
         x = R*(radians(v))
-        x_vypocet_meritka = round(x/b,1)
+        x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
     for u in range(-90, 90, c):
         y = 2*R*tan(radians(u)/2)
-        y_vypocet_meritka = round(y/b,1)
+        y_vypocet_meritka = round(y / m, 1)
         if abs(y_vypocet_meritka) > 100:
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
@@ -106,33 +124,32 @@ def braun(R):
 def mercator(R):
     for v in range(-180, 180, c):
         x = R*(radians(v))
-        x_vypocet_meritka = round(x/b,1)
+        x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
-    for u in range(-90, 91, c):
-        y = R*log(1/tan(radians(u)/2))
-        y_vypocet_meritka = round (y/b,1)
+    for u in range(-89, 89, c):
+        y = R*log(tan(radians(u)/2+(pi/4))) # goniometrická funkce "cotg" není dostupná, použito tan + pi/4.
+        y_vypocet_meritka = round (y / m, 1)
         if abs(y_vypocet_meritka) > 100:
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
 
+# Aplikace funkcí a vytisknutí seznamu vzdáleností rovnoběžek a poledníků
 
-while a == "L":
+while z == "L":
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    forward(rovnobezky)
-    exitonclick()
-    input("Konec")
-if a == "A":
+    input("Konec") # díky tomuto příkazu se okno cmd po ukončení nezavře
+if z == "A":
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     input("Konec")
-if a == "B":
+if z == "B":
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     input("Konec")
-if a == "M":
+if z == "M":
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     input("Konec")
