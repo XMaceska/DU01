@@ -135,6 +135,7 @@ def mercator(R):
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
 
+
 # Aplikace funkcí a vytisknutí seznamu vzdáleností rovnoběžek a poledníků
 
 while z == "L":
