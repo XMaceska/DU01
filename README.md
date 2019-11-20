@@ -1,6 +1,6 @@
 # DU01
 Domaci_ukol_zobrazeni
-Program pro výpočet vzdáleností mezi body po aplikaci kartografikéhop zobrazení.
+Program pro výpočet vzdáleností mezi body po aplikaci kartografikého zobrazení.
 
 1) Výběr zobrazení:
 
