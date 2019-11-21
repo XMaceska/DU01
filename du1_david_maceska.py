@@ -24,7 +24,7 @@ while z != "L" and z != "A" and z != "B" and z != "M":
     break
 
 
-# m = výběr měřítka, Požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
+# m = výběr měřítka, požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
 
 while True:
     m = (input("Zvolte požadované měřítko: "))
@@ -71,7 +71,7 @@ while True:
 
 # definice jednolivých funkcí za pomocí dostupných vzorců
 # v = poledniky, u = rovnobezky
-# Ve Vzorcích se dosazují radiány - nutný převod ze stupnů na radiány.
+# Ve vzorcích se dosazují radiány - nutný převod ze stupňů na radiány.
 # V závěru každé funkce výstup přepočten pomocí zadaného měřítka, následně každá hodnota vložena do vytvořeného seznamu
 # Funkcí IF ošetřeno je-li hodnota vzdáleností > 100 cm vypíše "-"
 
@@ -80,14 +80,14 @@ while True:
 def lambert(R):
     for v in range(-180, 180, c):      # funkce range (start, stop, step)
         x = float(R*(radians(v)))
-        x_vypocet_meritka = round(x / m, 1)
+        x_vypocet_meritka = round(x / m, 1) # funkce round (číslo, počet destinných míst)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
 
     for u in range(-90, 90, c):
         y = R*sin(radians(u))
-        y_vypocet_meritka = round(y / m, 1)
+        y_vypocet_meritka = round(y / m, 1) 
         if abs(y_vypocet_meritka) > 100:
             y_vypocet_meritka = "-"
         rovnobezky.append(y_vypocet_meritka)
