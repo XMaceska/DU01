@@ -11,17 +11,12 @@ poledniky = []
 
 #  z = Výběr zobrazení, neplatný vstup ošetřen pomocí vnořené funkce While
 
-z = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
-while z != "L" and z != "A" and z != "B" and z != "M":
-    print("pro znak",z, "není definováno žádné zobrazení\n")
-    druhy_pokus = input("Na výběr pouze z uvedených válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
-    while druhy_pokus == "L" and druhy_pokus == "A" and druhy_pokus == "B" and druhy_pokus == "M":
+while True:
+    z = input("Na výběr z několika válcových tečných zobrazení: \n\nL pro Lambertovo zobrazení \nA pro Marinovo zobrazení \nB pro Braunovo zobrazení \nM pro Mercatorovo zobrazení\n\nZvolte požadované zobrazení: ")
+    if z == "L" or z == "A" or z == "B" or z == "M":
         break
-    if druhy_pokus != "L" and druhy_pokus != "A" and druhy_pokus != "B" and druhy_pokus != "M":
-        print("pro znak",druhy_pokus,"také není definováno žádné zobrazení")
-        druhy_pokus = z
-        continue
-    break
+    else:
+       print("pro znak", [z], "není definováno žádné zobrazení\n")
 
 
 # m = výběr měřítka, Požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
@@ -45,8 +40,13 @@ while True:
     if polomer == "A":
         jednotky = (input("V jakých jednotkách chcete zadat poloměr země?\n[km], [m] anebo [cm], [?] pro pomoc s převody: "))
         if jednotky == "km":
-            R = float(input("Zadejte požadovaný poloměr země v km: "))
-            R = R*100000
+            while True:
+                R = (input("Zadejte požadovaný poloměr země v km: "))
+                if (R.isdigit()):
+                    R = float(R * 100000)
+                    break
+                else:
+                    print("blbě")
             break
         if jednotky == "m":
             R = float(input("Zadejte požadovaný poloměr země v m: "))
