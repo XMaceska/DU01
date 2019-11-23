@@ -40,13 +40,8 @@ while True:
     if polomer == "A":
         jednotky = (input("V jakých jednotkách chcete zadat poloměr země?\n[km], [m] anebo [cm], [?] pro pomoc s převody: "))
         if jednotky == "km":
-            while True:
-                R = (input("Zadejte požadovaný poloměr země v km: "))
-                if (R.isdigit()):
-                    R = float(R * 100000)
-                    break
-                else:
-                    print("blbě")
+            R = float(input("Zadejte požadovaný poloměr země v km: "))
+            R = (R * 100000)
             break
         if jednotky == "m":
             R = float(input("Zadejte požadovaný poloměr země v m: "))
