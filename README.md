@@ -16,6 +16,7 @@ Program pro výpočet vzdáleností mezi body po aplikaci kartografického zobra
  
  - Volba "N" defaulní poloměr: 6371.11km
  - Vlastní vstup v jednotkách km, m anebo cm, dle volby
+ - Při zadání záporné hodnoty program bude počítat s hodnout kladnou. 
 
 4) Výsledek
  
