@@ -1,5 +1,6 @@
 from math import sin, tan, log, radians,pi
 import webbrowser
+
 # definice proměnných
 
 R = 6371.11         # poloměr země [km]
@@ -19,7 +20,7 @@ while True:
        print(f"pro znak \"{z}\" není definováno žádné zobrazení\n")
 
 
-# m = výběr měřítka, požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
+# m = výběr měřítka, požadovaný vstup integer. While True funkce ošetřuje nechtěný vstup string.
 
 while True:
     m = (input("Zvolte požadované měřítko: "))
@@ -101,7 +102,7 @@ while True:
 
 
 def lambert(R):
-    for v in range(-180, 180+1, c):      # funkce range (start, stop, step)
+    for v in range(-180, 180+1, c):      # funkce range (start, stop, step), hodnota +1 z důvodu, aby byla započtena v range i hodnota 180
         x = float(R*(radians(v)))
         x_vypocet_meritka = round(x / m, 1) # funkce round (číslo, počet destinných míst)
         if abs(x_vypocet_meritka) > 100:
