@@ -1,4 +1,5 @@
 from math import sin, tan, log, radians,pi
+import re
 
 # definice proměnných
 
@@ -40,18 +41,37 @@ while True:
     if polomer == "A":
         jednotky = (input("V jakých jednotkách chcete zadat poloměr země?\n[km], [m] anebo [cm], [?] pro pomoc s převody: "))
         if jednotky == "km":
-            R = float(input("Zadejte požadovaný poloměr země v km: "))
-            R = (R * 100000)
+            while True:
+                try:
+                    R = float(input("Zadejte požadovaný poloměr země v km: "))
+                except ValueError:
+                    print("Zadaný znak není číslo, zadejte prosím pouze číselnou hodnotu poloměru země v km: ")
+                    continue
+                else:
+                    R = abs((R*100000))
+                    break
             break
-        if jednotky == "m":
-            R = float(input("Zadejte požadovaný poloměr země v m: "))
-            R = R*100
+        elif jednotky == "m":
+            while True:
+                try:
+                    R = float(input("Zadejte požadovaný poloměr země v m: "))
+                except ValueError:
+                    print("Zadaný znak není číslo, zadejte prosím pouze číselnou hodnotu poloměru země v m: ")
+                else:
+                    R = abs(R*100)
+                    break
             break
-        if jednotky == "cm":
-            R = float(input("Zadejte požadovaný poloměr země v cm: "))
-            R = R
+        elif jednotky == "cm":
+            while True:
+                try:
+                    R = float(input("Zadejte požadovaný poloměr země v cm: "))
+                except ValueError:
+                    print("Zadaný znak není číslo, zadejte prosím pouze číselnou hodnotu poloměru země v cm: ")
+                else:
+                    R = R
+                    break
             break
-        if jednotky == "?":
+        elif jednotky == "?":
             print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
             continue
         else:
@@ -136,17 +156,16 @@ def mercator(R):
 while z == "L":
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    input("Konec") # díky tomuto příkazu se okno cmd po ukončení nezavře
+    exit()
 if z == "A":
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    input("Konec")
-if z == "B":
+    exit()
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    input("Konec")
+    exit()
 if z == "M":
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
-    input("Konec")
+    exit()
 
