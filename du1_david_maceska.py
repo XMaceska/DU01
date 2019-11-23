@@ -1,6 +1,5 @@
 from math import sin, tan, log, radians,pi
-import re
-
+import webbrowser
 # definice proměnných
 
 R = 6371.11         # poloměr země [km]
@@ -17,7 +16,7 @@ while True:
     if z == "L" or z == "A" or z == "B" or z == "M":
         break
     else:
-       print("pro znak", [z], "není definováno žádné zobrazení\n")
+       print(f"pro znak \"{z}\" není definováno žádné zobrazení\n")
 
 
 # m = výběr měřítka, požadovaný vstup integer. While True funkce oštřuje nechtěný vstup string.
@@ -29,7 +28,7 @@ while True:
         print(f'Zvolil(a) jste měřítko 1:{m}') # kudrnaté závorky z důvodu, aby nebyla mezera za dvojtečkou.
         break
     else:
-        print({m},"není číslo (integer), zadejte prosím pouze celočíslenou hodnotu:")
+        print(f"\"{m}\" není číslo (integer), zadejte prosím pouze celočíslenou hodnotu:")
 
 
 # Volba vlastního poloměru země.
@@ -73,6 +72,15 @@ while True:
             break
         elif jednotky == "?":
             print("Potřebujete odkaz na převod jednotek? https://www.jednotky.cz/")
+
+            # Otevření odkazu v Google Chrome
+            url = "https://www.jednotky.cz/"
+            chrome_path_windows = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+            webbrowser.get(chrome_path_windows).open(url)
+            chrome_path_linux = '/usr/bin/google-chrome %s'
+            webbrowser.get(chrome_path_linux).open(url)
+            chrome_path_MacOS = 'open -a /Applications/Google\ Chrome.app %s'
+            webbrowser.get(chrome_path_MacOS).open(url)
             continue
         else:
             print("Zadejte prosím pouze znak(y) uvedené v hranatých závorkách")
@@ -155,25 +163,25 @@ def mercator(R):
 
 while z == "L":
     print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 if z == "A":
     print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 elif z == "B":
     print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 elif z == "M":
     print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
