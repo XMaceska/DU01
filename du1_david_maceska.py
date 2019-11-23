@@ -68,7 +68,7 @@ while True:
                 except ValueError:
                     print("Zadaný znak není číslo, zadejte prosím pouze číselnou hodnotu poloměru země v cm: ")
                 else:
-                    R = R
+                    R = abs(R)
                     break
             break
         elif jednotky == "?":
@@ -93,14 +93,14 @@ while True:
 
 
 def lambert(R):
-    for v in range(-180, 180, c):      # funkce range (start, stop, step)
+    for v in range(-180, 180+1, c):      # funkce range (start, stop, step)
         x = float(R*(radians(v)))
         x_vypocet_meritka = round(x / m, 1) # funkce round (číslo, počet destinných míst)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
 
-    for u in range(-90, 90, c):
+    for u in range(-90, 90+1, c):
         y = R*sin(radians(u))
         y_vypocet_meritka = round(y / m, 1) 
         if abs(y_vypocet_meritka) > 100:
@@ -108,14 +108,14 @@ def lambert(R):
         rovnobezky.append(y_vypocet_meritka)
 
 def marin(R):
-    for v in range(-180, 180, c):
+    for v in range(-180, 180+1, c):
         x = float(R*(radians(v)))
         x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
 
-    for u in range(-90, 90, c):
+    for u in range(-90, 90+1, c):
         y = R*(radians(u))
         y_vypocet_meritka = round(y / m, 1)
         if abs(y_vypocet_meritka) > 100:
@@ -123,13 +123,13 @@ def marin(R):
         rovnobezky.append(y_vypocet_meritka)
 
 def braun(R):
-    for v in range(-180, 180, c):
+    for v in range(-180, 180+1, c):
         x = R*(radians(v))
         x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
-    for u in range(-90, 90, c):
+    for u in range(-90, 90+1, c):
         y = 2*R*tan(radians(u)/2)
         y_vypocet_meritka = round(y / m, 1)
         if abs(y_vypocet_meritka) > 100:
@@ -137,13 +137,13 @@ def braun(R):
         rovnobezky.append(y_vypocet_meritka)
 
 def mercator(R):
-    for v in range(-180, 180, c):
+    for v in range(-180, 180+1, c):
         x = R*(radians(v))
         x_vypocet_meritka = round(x / m, 1)
         if abs(x_vypocet_meritka) > 100:
             x_vypocet_meritka = "-"
         poledniky.append(x_vypocet_meritka)
-    for u in range(-89, 89, c):
+    for u in range(-89, 88+1, c):
         y = R*log(tan(radians(u)/2+(pi/4))) # goniometrická funkce "cotg" není dostupná, použito tan + pi/4.
         y_vypocet_meritka = round (y / m, 1)
         if abs(y_vypocet_meritka) > 100:
@@ -154,18 +154,28 @@ def mercator(R):
 # Aplikace funkcí a vytisknutí seznamu vzdáleností rovnoběžek a poledníků
 
 while z == "L":
+    print(f'\nZvolil(a) jste měřítko 1:{m}')
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 if z == "A":
+    print(f'\nZvolil(a) jste měřítko 1:{m}')
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
+elif z == "B":
+    print(f'\nZvolil(a) jste měřítko 1:{m}')
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
-if z == "M":
+elif z == "M":
+    print(f'\nZvolil(a) jste měřítko 1:{m}')
+    print("Zvolil(a) jste poloměr země:", round(R*0.00001,2), "km")
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
-
+else:
+    exit()
