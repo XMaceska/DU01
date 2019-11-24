@@ -17,7 +17,7 @@ while True:
     if z == "L" or z == "A" or z == "B" or z == "M":
         break
     else:
-       print(f"pro znak \"{z}\" není definováno žádné zobrazení\n")
+       print(f"pro znak \"{z}\" není definováno žádné zobrazení\n") # f-string. Díky kudrnatým závorkám a lomítkům vytiskne parametr z v uvozovkách.
 
 
 # m = výběr měřítka, požadovaný vstup integer. While True funkce ošetřuje nechtěný vstup string.
@@ -33,8 +33,8 @@ while True:
 
 
 # Volba vlastního poloměru země.
-# Pomocí vnořených příkazů IF umožněna volba jednotek při vstupu.
 # Výsledný poloměr vždy převeden na jednotky cm.
+# ValueError ošetřuje nesprávný vstup string
 
 while True:
     polomer = input("Chcete zvolit vlastní poloměr země? A/N: ")
@@ -48,7 +48,7 @@ while True:
                     print("Zadaný znak není číslo, zadejte prosím pouze číselnou hodnotu poloměru země v km: ")
                     continue
                 else:
-                    R = abs((R*100000))
+                    R = abs((R*100000)) # abs ošetřuje vstup záporného měřítka
                     break
             break
         elif jednotky == "m":
@@ -161,28 +161,22 @@ def mercator(R):
 
 
 # Aplikace funkcí a vytisknutí seznamu vzdáleností rovnoběžek a poledníků
+print(f'\nZvolil(a) jste měřítko 1:{m}')
+print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
 
 while z == "L":
-    print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     lambert(R)
     print("Lambertovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 if z == "A":
-    print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     marin(R)
     print("Marinovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 elif z == "B":
-    print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     braun(R)
     print("Braunovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
 elif z == "M":
-    print(f'\nZvolil(a) jste měřítko 1:{m}')
-    print("Zvolil(a) jste poloměr země:", round(R*0.00001, 2), "km")
     mercator(R)
     print("Mercatorovo zobrazení:\n""Rovnoběžky:", rovnobezky, "\nPoledníky:", poledniky)
     exit()
